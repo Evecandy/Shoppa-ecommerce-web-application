@@ -1,0 +1,54 @@
+
+.header {
+    flex-wrap: wrap;
+    display: flex;
+    overflow: hidden;
+    background-color: #525050;
+    padding: 10px ;
+    justify-content: space-between;
+    font-family: Roboto, system-ui, sans-serif;
+    
+}
+
+.sign-up {
+    background-color: #38A65D;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    padding: .5rem 1rem;
+    margin-right: 1rem;
+}
+
+.sign-in {
+    color: white;
+    border-radius: none;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.logo {
+    display: flex;
+    font-size: 1.7rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+.header-center>a {
+    
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    padding: 0 4rem;
+    
+}
+.cart {
+    size: 1rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+
