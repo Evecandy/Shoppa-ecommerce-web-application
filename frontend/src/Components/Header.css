@@ -32,8 +32,11 @@
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-style: oblique;
     
 }
+
+
 .header-center>a {
     
     text-decoration: none;
