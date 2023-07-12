@@ -1,17 +1,10 @@
-
-
-
-
+import Sidebar from '../../Components/Sidebar'
 function AdminDashboard() {
   
 
   return (
     <>
-      <div>
-        <ul>
-            D
-        </ul>
-      </div>
+     <Sidebar/>
     </>
   )
 }

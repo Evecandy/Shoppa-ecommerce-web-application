@@ -10,7 +10,11 @@ import MyOrders from './Pages/MyOrders'
 import Cart from './Pages/Cart'
 import Payment from './Pages/Payment'
 import OrderDetails from './Pages/OrderDetails'
-import AdminDashboard from './Pages/AdminDashboard'
+import AdminDashboard from './Pages/Admin/AdminDashboard'
+import Customers from './Pages/Admin/Customers'
+import Orders from "./Pages/Admin/Orders"
+import ProductsAdmin from './Pages/Admin/ProductsAdmin'
+
 
 function App() {
   
@@ -33,6 +37,11 @@ function App() {
             <Route path="/payment" element={<Payment/>}/>
             <Route path="/orderdetails" element={<OrderDetails/>}/>
             <Route path="/admindashboard" element={<AdminDashboard/>}/>
+            <Route path="/customers" element={<Customers/>}/>
+            <Route path="/orders" element={<Orders/>}/>
+            <Route path="/products" element={<ProductsAdmin/>}/>
+
+
 
           </Routes>
        
