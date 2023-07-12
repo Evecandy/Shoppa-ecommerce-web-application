@@ -33,9 +33,9 @@ function SignedinHeader() {
           </a>
           </Link>
 
-          <Link to= "/signin">
-          <a className="sign-in a" href="">
-            Sign in
+          <Link to= "/">
+          <a className="sign-out a" href="">
+            Sign out
           </a>
           </Link>
 

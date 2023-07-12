@@ -49,8 +49,8 @@ function Cart() {
         </Link>
 
         We accept 
-        <BiLogoVisa/>
-        <GrPaypal/>
+        <BiLogoVisa color="blue"/>
+        <GrPaypal color="blue"/>
         <BiLogoMastercard/>
         
         

@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Signin() {
   const schema = yup.object().shape({
@@ -57,7 +58,7 @@ function Signin() {
         
         <p>{errors.Password?.message}</p>
         
-            <p>Sign in as admin?</p>
+            <p>Sign in as <Link to = "/admindashboard">admin?</Link></p>
 
         <input type="submit" value="Sign in" />
       </form>
