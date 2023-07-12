@@ -6,6 +6,7 @@ function Footer() {
       
         <footer >
           <section>
+            <p>Contact</p>
             <a href="https://github.com/Evecandy" target="_blank">Eve Candy - GitHub </a>
           </section>
           <section className="help">

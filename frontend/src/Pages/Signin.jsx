@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function Signin() {
   const schema = yup.object().shape({
@@ -14,20 +15,46 @@ function Signin() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
+
+  useEffect(() => {
+    // Get the data from local storage
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+     // Set the state variables with the data from local storage
+    if (storedUsername) {
+        setUsername(storedUsername);
+      }
+      if (storedPassword) {
+        setPassword(storedPassword);
+      }
+    }, []);
+
+    // Save the data to local storage
+  const handleSignin = (e) => {
+    e.preventDefault();
+
+    // Save the data to local storage
+    localStorage.setItem("username", Username);
+    localStorage.setItem("password", Password);
+  };
+
+  
 
     return (
       <>
-       <h2>Shoppa</h2>
+       <h2>Sign in</h2>
        <div>
-      <form id="signup-form" onSubmit={handleSubmit}>
-        <label htmlFor=""> Username
+      <form id="signup-form" onSubmit={handleSignin}>
+        <label htmlFor=""> Username </label>
         <input type="text" {...register("Username")} placeholder="Username" />
-        </label>
         <p>{errors.Username?.message}</p>
         
-        <label htmlFor=""> Password
+        <label htmlFor=""> Password </label>
         <input type="password" {...register("Password")} placeholder="Password" />
-        </label>
+        
         <p>{errors.Password?.message}</p>
         
             <p>Sign in as admin?</p>

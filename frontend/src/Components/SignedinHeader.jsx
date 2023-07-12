@@ -1,8 +1,9 @@
+
 import "./Header.css";
 import { AiOutlineShoppingCart } from "react-icons/Ai";
 import { Link } from "react-router-dom";
 
-function Header() {
+function SignedinHeader() {
   return (
     <>
       <header>
@@ -23,17 +24,25 @@ function Header() {
             Kids
           </a>
         </nav>
+
         <div className="header-right">
-          <Link to="/signup">
-            <button className="sign-up btn green-btn">Sign up</button>
+          
+        <Link to= "/myorders">
+          <a className="my-orders a" href="">
+            My orders
+          </a>
           </Link>
+
           <Link to= "/signin">
           <a className="sign-in a" href="">
             Sign in
           </a>
           </Link>
+
           <div className="cart-icon">
+            <Link to = "/cart">
             <AiOutlineShoppingCart color="white" />
+            </Link>
           </div>
         </div>
       </header>
@@ -41,4 +50,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default SignedinHeader;

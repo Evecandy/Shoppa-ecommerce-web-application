@@ -26,15 +26,11 @@ function Signup() {
               <input type="text" {...register("Username")} placeholder="Username"/>
           </div>
           <p>{errors.Username?.message}</p>
-          <label htmlFor="">
-            
-            Email
-            <input
-              type="email"
-              {...register("EmailAddress")}
-              placeholder="email@example.com"
-            />
-          </label>
+        <div className="input-wrapper">
+          <label htmlFor=""> Email </label>
+          <input
+              type="email" {...register("EmailAddress")} placeholder="email@example.com"/>
+        </div>
           <p>{errors.EmailAddress?.message}</p>
           <div className="input-wrapper">
             <label htmlFor=""> Password </label>
@@ -42,7 +38,7 @@ function Signup() {
           </div>
           
           <p>{errors.Password?.message}</p>
-
+      
           <input type="submit" className="green-btn btn" value="Sign up" />
         </form>
       </div>

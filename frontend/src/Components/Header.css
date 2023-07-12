@@ -2,7 +2,7 @@
 header {
     flex-wrap: wrap;
     display: flex;
-    background-color: #525050;
+    background-color: var(--theme-brown);
     padding: 10px 3svw;
     justify-content: space-between;
     font-family: Roboto, system-ui, sans-serif;
@@ -21,9 +21,10 @@ header {
     display: flex;
     font-size: 1.7rem;
     color: white;
-    text-decoration: none;
+    /* text-decoration: none; */
     font-weight: bold;
     font-style: oblique;
+   
     
 }
 
@@ -43,7 +44,7 @@ nav>a {
 
     
 }
-.cart {
+.cart-icon {
     size: 1rem;
 }
 
