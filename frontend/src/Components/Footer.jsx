@@ -1,34 +1,33 @@
-import "./Footer.css"
-
+import "./Footer.css";
 
 function Footer() {
-  
+  return (
+    <>
+      
+        <footer >
+          <section>
+            <a href="https://github.com/Evecandy" target="_blank">Eve Candy - GitHub </a>
+          </section>
+          <section className="help">
+            <p>Help and information</p>
+            <p>Help</p>
+            <p>Track your order</p>
+          </section>
 
-    return (
-      <>
-        <div className="footer-container">
-            <div className="footer">
-            <div className="help">
-                <p>Help and information</p>
-                <p>Help</p>
-                <p>Track your order</p> 
-            </div>
+          <section className="about">
+            <p>About Shoppa</p>
+            <p>About us</p>
+          </section>
+          <section className="more">
+            <p>More from Shoppa</p>
+            <p>Mobile and Shoppa apps</p>
+          </section>
 
-            <div className="about">
-                <p>About Shoppa</p>
-                <p>About us</p>
-            </div>
-            <div className="more">
-                <p>More from Shoppa</p>
-                <p>Mobile and Shoppa apps</p>                
-            </div>
-            </div>
+        </footer>
+       
+     
+    </>
+  );
+}
 
-           Created by Eve Candy Mutunga
-            
-        </div>
-      </>
-    )
-  }
-  
-  export default Footer
+export default Footer;

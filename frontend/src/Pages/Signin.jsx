@@ -30,7 +30,7 @@ function Signin() {
         </label>
         <p>{errors.Password?.message}</p>
         
-            <h6>Sign in as admin?</h6>
+            <p>Sign in as admin?</p>
 
         <input type="submit" value="Sign in" />
       </form>

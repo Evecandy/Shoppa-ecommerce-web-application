@@ -1,29 +1,20 @@
 
-.header {
+header {
     flex-wrap: wrap;
     display: flex;
-    overflow: hidden;
     background-color: #525050;
-    padding: 10px ;
+    padding: 10px 3svw;
     justify-content: space-between;
     font-family: Roboto, system-ui, sans-serif;
+    gap: 1rem;
     
 }
 
 .sign-up {
-    background-color: #38A65D;
+    background-color:var(--theme-green) ;
     font-size: 1rem;
-    color: white;
-    border: none;
     padding: .5rem 1rem;
-    margin-right: 1rem;
-}
-
-.sign-in {
-    color: white;
-    border-radius: none;
-    text-decoration: none;
-    margin-right: 1rem;
+    
 }
 
 .logo {
@@ -36,13 +27,20 @@
     
 }
 
+nav {
+    display: flex;
+    gap: 1rem;
+    /* flex: 1; */
+    justify-content: space-around;
+}
 
-.header-center>a {
+nav>a {
     
     text-decoration: none;
     color: white;
     font-size: 1.3rem;
-    padding: 0 4rem;
+    
+
     
 }
 .cart {
@@ -52,6 +50,11 @@
 .header-right {
     display: flex;
     align-items: center;
+    gap: 1rem;
+}
+
+a {
+    display: block;
 }
 
 

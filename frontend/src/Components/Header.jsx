@@ -1,30 +1,40 @@
 import "./Header.css";
-import {AiOutlineShoppingCart} from "react-icons/Ai"
+import { AiOutlineShoppingCart } from "react-icons/Ai";
+import { Link } from "react-router-dom";
+
 function Header() {
-  
-
-    return (
-      <>
-        <div className="header">
-        <a href="#" className="logo">Shoppa</a>
-        <div className="header-center">
-        <a className="women" href="#">Women</a>
-        <a className="men"href="#">Men</a>
-        <a className="kids"href="#">Kids</a>
-       
-        </div>
+  return (
+    <>
+      <header>
+        <a href="#" className="logo">
+          Shoppa
+        </a>
+        <nav>
+          <a className="women" href="#">
+            Women
+          </a>
+          <a className="men" href="#">
+            Men
+          </a>
+          <a className="kids" href="#">
+            Kids
+          </a>
+        </nav>
         <div className="header-right">
-        <button className="sign-up" >Sign up</button>
-        <a className="sign-in"href="#">Sign in</a>
-        <div className="cart">
-        <AiOutlineShoppingCart color="white"/>
-        </div>
-        </div>
-        </div>
+          <Link to="/signup">
+            <button className="sign-up btn green-btn">Sign up</button>
+          </Link>
 
-      </>
-    )
-  }
-  
-  export default Header
-  
+          <a className="sign-in a" href="#">
+            Sign in
+          </a>
+          <div className="cart">
+            <AiOutlineShoppingCart color="white" />
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
+
+export default Header;

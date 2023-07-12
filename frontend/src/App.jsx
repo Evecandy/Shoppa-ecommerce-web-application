@@ -11,20 +11,22 @@ function App() {
 
     return (
       <>
+      <BrowserRouter>
       <Header/>
       
       <main>
-        <BrowserRouter>
+        
           <Routes>
             <Route path="/" element={<Homepage/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/signin" element={<Signin/>}/>
             <Route path="/products" element={<Products/>}/>
           </Routes>
-        </BrowserRouter>
+       
       </main>
-      
       <Footer/>
+      </BrowserRouter>
+      
       </>
     )
   }

@@ -16,31 +16,38 @@ function Signup() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-    return (
-      <>
-       <h2>Shoppa</h2>
-       <div>
-      <form id="signup-form" onSubmit={handleSubmit}>
-        <label htmlFor=""> Username
-        <input type="text" {...register("Username")} placeholder="Username" />
-        </label>
-        <p>{errors.Username?.message}</p>
-        <label htmlFor=""> Email
-        <input  type="email" {...register("EmailAddress")}
-          placeholder="email@example.com"
-        /></label>
-        <p>{errors.EmailAddress?.message}</p>
-        <label htmlFor=""> Password
-        <input type="password" {...register("Password")} placeholder="Password" />
-        </label>
-        <p>{errors.Password?.message}</p>
-        <input type="submit" value="Sign up" />
-      </form>
-    </div>
+  return (
+    <>
+      <h2>Sign up</h2>
+      <div>
+        <form id="signup-form" onSubmit={handleSubmit}>
+          <div className="input-wrapper">
+              <label htmlFor="">Username</label>
+              <input type="text" {...register("Username")} placeholder="Username"/>
+          </div>
+          <p>{errors.Username?.message}</p>
+          <label htmlFor="">
+            
+            Email
+            <input
+              type="email"
+              {...register("EmailAddress")}
+              placeholder="email@example.com"
+            />
+          </label>
+          <p>{errors.EmailAddress?.message}</p>
+          <div className="input-wrapper">
+            <label htmlFor=""> Password </label>
+            <input type="password" {...register("Password")} placeholder="Password" />
+          </div>
+          
+          <p>{errors.Password?.message}</p>
 
-      </>
-    )
-  }
-  
-  export default Signup
-  
+          <input type="submit" className="green-btn btn" value="Sign up" />
+        </form>
+      </div>
+    </>
+  );
+}
+
+export default Signup;
