@@ -1,5 +1,5 @@
 import "./Header.css";
-import { AiOutlineShoppingCart } from "react-icons/Ai";
+import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -33,7 +33,7 @@ function Header() {
           
           </Link>
           <div className="cart-icon">
-            <AiOutlineShoppingCart color="white" />
+            <BsCart3 color="white" />
           </div>
         </div>
       </header>
