@@ -7,10 +7,10 @@ function Header() {
     <>
       <header>
      
-      <Link to="/">
-        <a href="" className="logo a" >
+      <Link to="/" className="logo a">
+        
           Shoppa
-        </a>
+       
         </Link>
         <nav>
           <a className="women" href="">
@@ -27,10 +27,10 @@ function Header() {
           <Link to="/signup">
             <button className="sign-up btn green-btn">Sign up</button>
           </Link>
-          <Link to= "/signin">
-          <a className="sign-in a" href="">
+          <Link to= "/signin" className="sign-in a">
+          
             Sign in
-          </a>
+          
           </Link>
           <div className="cart-icon">
             <AiOutlineShoppingCart color="white" />

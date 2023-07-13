@@ -1,19 +1,18 @@
 import "./Products.css";
 import ankara from "../assets/ankara.jpg";
-import { Link } from "react-router-dom";
+import ProductCard from "../Components/ProductCard";
 
 function Products() {
+  const products = Array(10).fill(null)
+  products.forEach((value, index) =>  {
+    products[index] = <ProductCard key={index} data={ {img:ankara}}/>
+  })
+// console.log(products);
+
   return (
     <>
-      <div className="card">
-        <img src={ankara} alt="Ankaratop and pants"/>
-
-        <h3>Ankara top and pants</h3>
-        <p className="price">Ksh 4,500</p>
-       <Link to = "/cart">
-       <button className="add-to-cart green-btn btn">Add to Cart</button>
-       </Link>
-        
+      <div className="products">
+      {products}
       </div>
     </>
   );
