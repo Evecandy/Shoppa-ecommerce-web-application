@@ -2,7 +2,7 @@
 header {
     flex-wrap: wrap;
     display: flex;
-    background-color: var(--theme-brown);
+    background-color: var(--matterhorn-color);
     padding: 10px 3svw;
     justify-content: space-between;
     font-family: Roboto, system-ui, sans-serif;

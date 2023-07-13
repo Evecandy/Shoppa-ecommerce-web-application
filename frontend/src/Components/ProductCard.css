@@ -4,10 +4,17 @@
     flex-direction: column;
     width: 300px;
     height: 420px;
-    border: 1px solid grey;
+    border: 1px solid var(--theme-grey);
     justify-content: space-between;
     padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--default-box-shadow);
+    cursor: pointer;
+}
 
+.product-card:hover {
+    box-shadow: var(--default-hover-box-shadow);
+    
 }
 
 .product-image {
@@ -16,6 +23,8 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
 }
 
 .pricing-and-action {

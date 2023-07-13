@@ -1,18 +1,26 @@
 import "./Products.css";
 import ankara from "../assets/ankara.jpg";
 import ProductCard from "../Components/ProductCard";
+import { products } from "../db";
+import { useEffect, useState } from "react";
 
 function Products() {
-  const products = Array(10).fill(null)
+  // const products = Array(10).fill(null)
+  
+  const [products1, setProducts] = useState([]);
+
+useEffect( () => {
+  const productsList = []
   products.forEach((value, index) =>  {
-    products[index] = <ProductCard key={index} data={ {img:ankara}}/>
+    productsList[index] = <ProductCard key={index} data={ {img:value}}/>
   })
-// console.log(products);
+  setProducts(productsList)
+}, [])
 
   return (
     <>
       <div className="products">
-      {products}
+      {products1}
       </div>
     </>
   );
