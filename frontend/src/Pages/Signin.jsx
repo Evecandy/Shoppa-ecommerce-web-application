@@ -7,48 +7,32 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Signin() {
+  const navigate = useNavigate();
+  
+  const onSubmit = () => {
+    // Store the token in local storage.
+    localStorage.setItem("token", "");
+  
+    // Navigate to the products page.
+    navigate("/products");
+  };
   const schema = yup.object().shape({
     Username: yup.string().required("Username is required"),
     Password: yup.string().required("Password is required"),
   });
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
-
-  useEffect(() => {
-    // Get the data from local storage
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-     // Set the state variables with the data from local storage
-    if (storedUsername) {
-        setUsername(storedUsername);
-      }
-      if (storedPassword) {
-        setPassword(storedPassword);
-      }
-    }, []);
-
-    // Save the data to local storage
-  const handleSignin = (e) => {
-    e.preventDefault();
-
-    // Save the data to local storage
-    localStorage.setItem("username", Username);
-    localStorage.setItem("password", Password);
-  };
-
+ 
   
 
     return (
       <>
        <h2>Sign in</h2>
        <div>
-      <form id="signup-form" onSubmit={handleSignin}>
+      <form id="signup-form" onSubmit={onSubmit}>
         <label htmlFor=""> Username </label>
         <input type="text" {...register("Username")} placeholder="Username" />
         <p>{errors.Username?.message}</p>

@@ -32,8 +32,9 @@ function Header() {
             Sign in
           
           </Link>
+          
           <div className="cart-icon">
-            <BsCart3 color="white" />
+           <Link to = "/cart"> <BsCart3 color="white" /></Link>
           </div>
         </div>
       </header>

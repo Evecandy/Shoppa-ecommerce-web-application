@@ -23,11 +23,13 @@ function Cart() {
             <option value="small">S</option>
             <option value="medium">M</option>
             <option value="large">L</option>
-        </select>
-
+    </select>
+    <GrFavorite color="grey"/>
         <label htmlFor="quantity">Qty</label>
-            <GrFavorite color="grey"/>
-            <input type="number" value="1" className="quantity"/>
+           
+            <input type="number"  className="quantity" onChange={(e)=> {
+
+            }}/>
 
         <div>
             Subtotal Ksh 4,500

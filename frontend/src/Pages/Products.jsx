@@ -1,5 +1,4 @@
 import "./Products.css";
-import ankara from "../assets/ankara.jpg";
 import ProductCard from "../Components/ProductCard";
 import { products } from "../db";
 import { useEffect, useState } from "react";
