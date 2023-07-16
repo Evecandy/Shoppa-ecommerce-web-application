@@ -10,17 +10,20 @@ function Signup() {
     Password: yup.string().required("Password is required"),
     EmailAddress: yup.string().required("EmailAddress is required"),
   });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-
+  const onSubmit = (data) =>{
+    
+  }
   return (
     <>
       <h2>Sign up</h2>
       <div>
-        <form id="signup-form" onSubmit={handleSubmit}>
+        <form id="signup-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="input-wrapper">
               <label htmlFor="">Username</label>
               <input type="text" {...register("Username")} placeholder="Username"/>

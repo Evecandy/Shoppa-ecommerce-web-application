@@ -42,7 +42,7 @@ function Signin() {
         
         <p>{errors.Password?.message}</p>
         
-            <p>Sign in as <Link to = "/admindashboard">admin?</Link></p>
+            <p>Sign in as <Link to = "/admin/dashboard">admin?</Link></p>
     
         <input type="submit" value="Sign in"  className="btn green-btn"/>
       </form>

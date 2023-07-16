@@ -5,21 +5,21 @@ import {Link} from 'react-router-dom'
 const Sidebar = ({children}) => {
   const menuItem=[
     {
-      path:"/admindashboard",
+      path:"/admin/dashboard",
       name:"Dashboard",
       
     },
     {
-      path:"/customers",
+      path:"/admin/customers",
       name:" Customers",
       
     },
     {
-      path:"/orders",
+      path:"/admin/orders",
       name:"Orders",
       
     },{
-      path:"/products",
+      path:"/admin/products",
       name:"Products",
       
     }

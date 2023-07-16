@@ -1,29 +1,28 @@
-
 import "./Product.css";
 import ankara from "../assets/ankara.jpg";
-import { Link } from "react-router-dom";
 
 function Product() {
   return (
     <>
-      <div className="card">
-        <img src={ankara} alt="Ankaratop and pants"/>
-    </div>
-    <div>
-        <h3>Ankara top and pants</h3>
-        <p className="price">Ksh 4,500</p>
+      <div id="product-details">
+        <div id="product-image" style={{backgroundImage: `url(${ankara})`}}>
 
-        {/* Star rating */}
+        </div>
+        <div id="product-info">
+          <h3 id="product-name">Ankara top and pants</h3>
+          <p id="product-price">Ksh 4,500</p>
 
-        <label htmlFor="">Color</label>
-        <select  id="color">
+          {/* Star rating */}
+
+          <label htmlFor="">Color</label>
+          <select id="color">
             <option value="yellow">Yellow</option>
             <option value="multicolored">Multi colored</option>
-        </select>
-
-        <Link to = "/cart">
-        <button>Add to Cart</button>
-        </Link>
+          </select>
+        </div>
+      </div>
+      <div id="add-to-cart">
+        <button className="btn green-btn">Add to Cart</button>
       </div>
     </>
   );

@@ -10,6 +10,7 @@
     border-radius: 0.5rem;
     box-shadow: var(--default-box-shadow);
     cursor: pointer;
+    background-color: white;
 }
 
 .product-card:hover {

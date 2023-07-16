@@ -6,9 +6,10 @@ footer {
     display: flex;
     justify-content: space-around;
     background-color: var(--theme-grey);
+    position: relative;
 }
 
-p:first-of-type {
+.footer-section-header {
     font-weight: bold;
     font-size: 1.5rem;
   }

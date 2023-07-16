@@ -54,8 +54,14 @@ nav>a {
     gap: 1rem;
 }
 
-a {
-    display: block;
+.auth-btns {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 
+
+a {
+    display: block;
+}

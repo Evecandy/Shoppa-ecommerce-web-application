@@ -21,7 +21,7 @@ function Payment() {
 
         <label htmlFor="">Expiration date</label>
         <input type="date" />
-        <Link to="/products">
+        <Link to="/myorders">
         <button className="btn green-btn">Complete Payment</button>
         </Link>
         

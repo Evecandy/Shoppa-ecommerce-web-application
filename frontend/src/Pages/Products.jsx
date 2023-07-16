@@ -11,7 +11,7 @@ function Products() {
 useEffect( () => {
   const productsList = []
   products.forEach((value, index) =>  {
-    productsList[index] = <ProductCard key={index} data={ {img:value}}/>
+    productsList[index] = <ProductCard key={index} data={ {...value}}/>
   })
   setProducts(productsList)
 }, [])

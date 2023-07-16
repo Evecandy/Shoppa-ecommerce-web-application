@@ -14,6 +14,7 @@ import AdminDashboard from './Pages/Admin/AdminDashboard'
 import Customers from './Pages/Admin/Customers'
 import Orders from "./Pages/Admin/Orders"
 import ProductsAdmin from './Pages/Admin/ProductsAdmin'
+import NotFound from './Pages/NotFound'
 
 
 function App() {
@@ -31,18 +32,16 @@ function App() {
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/signin" element={<Signin/>}/>
             <Route path="/products" element={<Products/>}/>
-            <Route path="/product" element={<Product/>}/>
+            <Route path="/product/:id" element={<Product/>}/>
             <Route path="/myorders" element={<MyOrders/>}/>
             <Route path="/cart" element={<Cart/>}/>
             <Route path="/payment" element={<Payment/>}/>
-            <Route path="/orderdetails" element={<OrderDetails/>}/>
-            <Route path="/admindashboard" element={<AdminDashboard/>}/>
-            <Route path="/customers" element={<Customers/>}/>
-            <Route path="/orders" element={<Orders/>}/>
-            <Route path="/products" element={<ProductsAdmin/>}/>
-
-
-
+            <Route path="/order/:id" element={<OrderDetails/>}/>
+            <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+            <Route path="/admin/customers" element={<Customers/>}/>
+            <Route path="/admin/orders" element={<Orders/>}/>
+            <Route path="/admin/products" element={<ProductsAdmin/>}/>
+            <Route path="*" element={<NotFound/>}/>
           </Routes>
        
       </main>

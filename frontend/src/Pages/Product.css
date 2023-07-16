@@ -1,0 +1,40 @@
+
+#product-details {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    /* padding: 1rem; */
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#product-image, #product-info {
+    flex: 1;
+    min-width: 300px;
+    min-height: 50svh;
+}
+
+#product-image {
+    background-color: bisque;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#product-info{
+
+}
+
+#add-to-cart {
+    position: absolute;
+    bottom: 1rem;
+    right: 5%;
+    padding: 1rem;
+    width:max(50%, 300px);
+    background-color: white;
+    box-shadow: var(--default-box-shadow);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    border-radius: 5px;
+}
