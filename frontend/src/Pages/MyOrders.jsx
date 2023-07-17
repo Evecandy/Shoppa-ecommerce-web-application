@@ -37,6 +37,14 @@ function MyOrders() {
               <div>Shipping</div>
         
             </li>
+            <li className="order">
+              <div>40b48a91-747a-4c5b-8134-79e7f1a43f06</div>
+              <div>Fri Jul 07 2023 03:03:40 GMT+0300</div>
+              <div>Ksh 27,000</div>
+              <div>2</div>
+              <div>Processing</div>
+        
+            </li>
           </Link>
 
         </ul>

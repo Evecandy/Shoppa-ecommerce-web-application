@@ -1,13 +1,14 @@
+import Sidebar from "../../Components/Sidebar"
 
 
 function Orders() {
   
 
   return (
-    <>
-    
-      <div>A list of all the orders made in the application</div>
-    </>
+    <div className="orders-container">
+    <Sidebar/>
+      <div className="orders">A list of all the orders made in the application</div>
+    </div>
   )
 }
 

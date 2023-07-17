@@ -1,0 +1,52 @@
+
+.order-details-header {
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    font-weight: 900;
+    background-color: white;
+    justify-content: center;
+}
+
+.order-details-list {
+    padding-left: 1rem;
+    background-color: white;
+    display: block;
+    
+}
+
+.order-item-image {
+    height: 100px;
+    width: 100px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.order-item-details{
+    height: 50px;
+}
+
+
+
+.order-item {
+    display: flex;
+    width: max(300px, 50svw);
+    box-shadow: var(--default-box-shadow);
+    background-color: white;
+    justify-content: space-between;
+    margin: 0.5rem;
+    
+}
+
+
+
+.order-payment-amount {
+    display: flex;
+    background-color: white;
+    font-size: larger;
+    font-weight: 900;
+    justify-content: space-around;
+    gap: 8.5rem;
+    padding: 1rem;
+}

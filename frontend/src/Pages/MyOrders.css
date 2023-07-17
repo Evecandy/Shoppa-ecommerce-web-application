@@ -5,6 +5,7 @@
 }
 
 .orders-status {
+    display: flex;
     font-size: larger;
     font-weight: 700; 
     justify-content: space-around;  
@@ -18,6 +19,7 @@
 
 .orders {
     list-style-type: none;
+    
 }
 
 .order {

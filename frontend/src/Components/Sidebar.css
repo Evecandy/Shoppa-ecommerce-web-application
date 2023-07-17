@@ -1,3 +1,32 @@
+.sidebar-container{width:max-content;
+    height: 100%;
+background-color: var(--matterhorn-color);
+/* padding: 8px 16px; */
+display: flex;
+flex-direction: column;
+}
+.side-dashboard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+.sidebar .link{
+    text-decoration: none;
+    padding: 12px 24px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--theme-pink);
+}
 
+.active{
+    background-color: var(--theme-pink);
+    color: var(--matterhorn-color) !important;
+}
 
   
