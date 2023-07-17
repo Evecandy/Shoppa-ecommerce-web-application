@@ -27,18 +27,6 @@ function OrderDetails() {
               </div>
             </div>
 
-            <div className="order-item">
-              <div
-                className="order-item-image"
-                style={{ backgroundImage: `url(${ankara}` }}
-              ></div>
-
-              <div className="order-item-details">
-                <div> Ksh 4,500 * 3 </div>
-                <div>Ankara top and pants</div>
-                <div>size : S</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
