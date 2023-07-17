@@ -1,0 +1,40 @@
+
+.orders-heading {
+    font-size: larger;
+    font-weight: 800;
+}
+
+.orders-status {
+    font-size: larger;
+    font-weight: 700; 
+    justify-content: space-around;  
+}
+
+.orders-info {
+    font-size: larger;
+    font-weight: 600; 
+    justify-content: space-around;   
+}
+
+.orders {
+    list-style-type: none;
+}
+
+.order {
+    display: flex;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: var(--default-box-shadow);
+    padding: 1rem;
+    gap: 1rem;
+    
+}
+
+.order-link {
+    color: black;
+    text-decoration: none;
+}
+
+.order:hover {
+    box-shadow: var(--default-hover-box-shadow);
+}
