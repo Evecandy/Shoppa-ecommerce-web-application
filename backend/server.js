@@ -4,6 +4,7 @@ import multer from 'multer';
 import cors from 'cors';
 import { uploadFileToFirebase } from './firebase.js';
 import { expressConfig } from './config/index.js';
+import userRouter from './routes/user.routes.js';
 
 
 const app = express();
@@ -23,7 +24,8 @@ app.post('/upload', upload.fields([{name: 'file'}, {name: 'json'}]), async (req,
   }
 });
 
-// Start the server
+app.use("/users", userRouter)
+
 app.listen(expressConfig.port, () => {
   console.log('Server is running at ' + expressConfig.url);
 });

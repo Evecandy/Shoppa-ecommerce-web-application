@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config({path:path.resolve(dirname(fileURLToPath(import.meta.url)), "env/.env")})
 
-const { PORT, HOST, SQL_SERVER, SQL_USER, SQL_PASSWORD, SQL_DB, SQL_ENCRYPT, JWT_SECRET } = process.env;
+const { PORT, HOST, SQL_SERVER, SQL_USER, SQL_PWD, SQL_DB, SQL_ENCRYPT, JWT_SECRET } = process.env;
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,14 +18,14 @@ export const firebaseConfig = {
     measurementId: process.env.MEASUREMENT_ID
   };
 
-
 export const databaseConfig = {
       server: SQL_SERVER,
       user: SQL_USER,
-      password: SQL_PASSWORD,
+      password: SQL_PWD,
       database: SQL_DB,
       options: {
-        encrypt: SQL_ENCRYPT === "true", 
+        encrypt: SQL_ENCRYPT === undefined || SQL_ENCRYPT === "true", 
+        
         enableArithAbort: true,
       },
   };

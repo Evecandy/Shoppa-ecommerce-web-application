@@ -1,22 +1,12 @@
-
-import {getUsers, createUsers, getOneUser, updateUser, deleteUser} from "../controllers/user.controller.js";
-import { validateCreateUserData } from "../customMiddlewares/user.validations.js";
-import { signup, signin} from "../controllers/user.controller.js";
-import { verifyUser } from "../customMiddlewares/auth.js";
+import { Router } from "express";
+import { getUsers, signin, signup } from "../controllers/user.controller.js"
 
 
-const UserRoutes = (app) => {
-    app.route('/users').get(getUsers).post(validateCreateUserData, createUsers);
-    app
-      .route('/users/:Username')
-      .get(getOneUser)
-      .put(updateUser)
-      .delete(deleteUser);
+const userRouter = Router()
+userRouter.post("", signup)
+userRouter.post("/signin", signin)
+userRouter.get("", getUsers) 
 
-      app.route('/auth/signup').post(signup);
 
-      app.route('/auth/signin').post(signin);
 
-}
-
-export default UserRoutes;
+export default userRouter;

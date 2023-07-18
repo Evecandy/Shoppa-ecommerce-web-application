@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "engines": {
-    "node":">=18.16.0"
+    "node": ">=18.16.0"
   },
   "scripts": {
     "test": "node server.js",
@@ -23,6 +23,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.1",
     "mssql": "^9.1.1",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,60 +1,62 @@
 import sql from "mssql";
-import config from "../database/config.js";
+import { databaseConfig } from "../config/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { v4 as uid } from "uuid";
 
 export const signup = async (req, res) => {
-  const { Username, Password, EmailAddress } = req.body;
-  const hashedPassword = bcrypt.hashSync(Password, 10);
   try {
-    let pool = await sql.connect(config.sql);
+    const { username, password, emailAddress } = req.body;
+    let pool = await sql.connect(databaseConfig);
     const result = await pool
       .request()
-      .input("Username", sql.VarChar, Username)
-      .input("Password", sql.VarChar, Password)
-      .input("EmailAddress", sql.VarChar, EmailAddress)
+      .input("username", sql.VarChar, username)
+      .input("emailAddress", sql.VarChar, emailAddress)
       .query(
-        "SELECT * FROM Users WHERE Username = @Username OR EmailAddress = @EmailAddress"
+        "SELECT * FROM users WHERE username = @username OR emailAddress = @emailAddress"
       );
     const user = result.recordset[0];
     if (user) {
-      res.status(409).json({ error: "User already exists" });
+      return res.status(409).json({ message: "User already exists" });
     } else {
+      const id = uid();
+      const hashedpassword = bcrypt.hashSync(password, 10);  
+
       await pool
         .request()
-        .input("Username", sql.VarChar, Username)
-        .input("Password", sql.VarChar, hashedPassword)
-        .input("EmailAddress", sql.VarChar, EmailAddress)
-        .query(
-          "INSERT INTO Users (Username, Password, EmailAddress) VALUES (@Username, @Password, @EmailAddress)"
-        );
-      res.status(200).send({ message: "User created successfully" });
+        .input ("id" , sql.VarChar, id )
+        .input ("username", sql.VarChar, username)
+        .input ("emailAddress", sql.VarChar, emailAddress)
+        .input("password", sql.VarChar,hashedpassword)
+        .execute("createUser")
+
+      return res.status(201).json({ message: "User created successfully" });
     }
   } catch (error) {
-    res.status(500).json(error.message);
+    return res.status(500).json({ message: error.message});
   } finally {
     sql.close();
   }
 };
 
 export const signin = async (req, res) => {
-  const { Username, Password } = req.body;
-  let pool = await sql.connect(config.sql);
+  const { username, password } = req.body;
+  let pool = await sql.connect(databaseConfig);
   const result = await pool
     .request()
-    .input("Username", sql.VarChar, Username)
-    .input("Password", sql.VarChar, Password)
-    .query("SELECT * FROM Users WHERE Username = @Username");
+    .input("username", sql.VarChar, username)
+    .input("password", sql.VarChar, password)
+    .query("SELECT * FROM users WHERE username = @username");
   const user = result.recordset[0];
   if (!user) {
     res.status(401).json({ error: "Authentication failed. Wrong cedentials." });
   } else {
-    if (!bcrypt.compareSync(Password, user.Password)) {
+    if (!bcrypt.compareSync(password, user.password)) {
       res.status(401).json({ error: "signin not successful" });
     } else {
-      const token = jwt.sign({ Username: user.Username }, config.jwt_secret);
+      const token = jwt.sign({ username: user.username }, config.jwt_secret);
       res.status(200).json({
-        Username: user.Username,
+        username: user.username,
         token: token,
       });
     }
@@ -64,8 +66,8 @@ export const signin = async (req, res) => {
 //lets get all users
 export const getUsers = async (req, res) => {
   try {
-    let pool = await sql.connect(config.sql);
-    const resultSet = await pool.request().query("SELECT * FROM Users");
+    let pool = await sql.connect(databaseConfig);
+    const resultSet = await pool.request().query("SELECT * FROM users");
     res.status(200).json(resultSet.recordset);
   } catch (error) {
     res.status(220).json(error.message);
@@ -74,16 +76,16 @@ export const getUsers = async (req, res) => {
   }
 };
 
-//get a user:UserID:
+//get a user:userID:
 export const getOneUser = async (req, res) => {
   try {
-    const { UserID } = req.params;
-    let pool = await sql.connect(config.sql);
+    const { userID } = req.params;
+    let pool = await sql.connect(databaseConfig);
     const resultSet = await pool
       .request()
 
-      .input("UserID", sql.VarChar, UserID)
-      .query("SELECT * FROM Users WHERE UserID = @UserID");
+      .input("userID", sql.VarChar, userID)
+      .query("SELECT * FROM users WHERE userID = @userID");
     console.log(resultSet.recordset);
     res.status(200).json(resultSet);
   } catch (error) {
@@ -94,18 +96,18 @@ export const getOneUser = async (req, res) => {
 };
 
 //create a user/ add a user
-export const createUsers = async (req, res) => {
+export const createusers = async (req, res) => {
   try {
-    const { Username, Password, EmailAddress } = req.body;
-    let pool = await sql.connect(config.sql);
+    const { username, password, emailAddress } = req.body;
+    let pool = await sql.connect(databaseConfig);
     await pool
       .request()
 
-      .input("Username", sql.VarChar, Username)
-      .input("EmailAddress", sql.VarChar, EmailAddress)
-      .input("Password", sql.VarChar, Password)
+      .input("username", sql.VarChar, username)
+      .input("emailAddress", sql.VarChar, emailAddress)
+      .input("password", sql.VarChar, password)
       .query(
-        "INSERT INTO Users ( Username, EmailAddress, Password) VALUES ( @Username, @EmailAddress, @Password)"
+        "INSERT INTO users ( username, emailAddress, password) VALUES ( @username, @emailAddress, @password)"
       );
     res.status(200).json({ message: "User created successfully" });
   } catch (error) {
@@ -118,16 +120,16 @@ export const createUsers = async (req, res) => {
 //update a user
 export const updateUser = async (req, res) => {
   try {
-    const { Username } = req.params;
-    const { EmailAddress } = req.body;
-    const { Password } = req.body;
-    let pool = await sql.connect(config.sql);
+    const { username } = req.params;
+    const { emailAddress } = req.body;
+    const { password } = req.body;
+    let pool = await sql.connect(databaseConfig);
     const resultset = await pool
       .request()
-      .input("Username", sql.VarChar, Username)
-      .input("EmailAddress", sql.VarChar, EmailAddress)
-      .input("Password", sql.VarChar, Password)
-      .query("UPDATE Users SET Password=@Password WHERE Username=@Username");
+      .input("username", sql.VarChar, username)
+      .input("emailAddress", sql.VarChar, emailAddress)
+      .input("password", sql.VarChar, password)
+      .query("UPDATE users SET password=@password WHERE username=@username");
     res.status(200).json({ message: "User password was updated successfully" });
   } catch (error) {
     res.status(400).json(error.message);
@@ -137,16 +139,16 @@ export const updateUser = async (req, res) => {
 };
 
 //delete a user
-export const deleteUser = async (req, res) => {
-  try {
-    const { Username } = req.params;
-    let pool = await sql.connect(config.sql);
+// export const deleteUser = async (req, res) => {
+//   try {
+//     const { username } = req.params;
+//     let pool = await sql.connect(databaseConfig);
 
-    await sql.query`DELETE FROM users WHERE Username = ${Username}`;
-    res.status(200).json({ message: "user deleted successfully" });
-  } catch (error) {
-    res.status(500).json(error.message);
-  } finally {
-    sql.close();
-  }
-};
+//     await sql.query`DELETE FROM users WHERE username = ${username}`;
+//     res.status(200).json({ message: "user deleted successfully" });
+//   } catch (error) {
+//     res.status(500).json(error.message);
+//   } finally {
+//     sql.close();
+//   }
+// };

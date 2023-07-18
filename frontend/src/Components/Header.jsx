@@ -36,11 +36,13 @@ function Header() {
             <Link to= "/signin" className="sign-in a">
               Sign in
             </Link>
+
             </div>
             )}
           <div className="cart-icon">
            <Link to = "/cart"> <BsCart3 color="white" /></Link>
           </div>
+          <div>Sign out</div>
         </div>
       </header>
     </>
