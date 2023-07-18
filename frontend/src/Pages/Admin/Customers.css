@@ -1,0 +1,10 @@
+
+.customers {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.customer-details {
+    display: flex;
+}

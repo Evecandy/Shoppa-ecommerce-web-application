@@ -25,10 +25,12 @@ function ProductsAdmin() {
   };
 
   return (
+    
     <div className="products-container">
       <Sidebar />
       <div className="product-form">
         <form onSubmit={handleSubmit(onSubmit)}>
+          add products
           <input
             type="text"
             {...register("name")}
