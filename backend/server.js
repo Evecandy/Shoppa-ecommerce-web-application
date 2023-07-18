@@ -3,6 +3,7 @@ import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
 import { uploadFileToFirebase } from './firebase.js';
+import { expressConfig } from './config/index.js';
 
 
 const app = express();
@@ -23,6 +24,6 @@ app.post('/upload', upload.fields([{name: 'file'}, {name: 'json'}]), async (req,
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(expressConfig.port, () => {
+  console.log('Server is running at ' + expressConfig.url);
 });

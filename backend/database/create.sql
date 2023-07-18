@@ -1,0 +1,55 @@
+
+
+USE Shoppa;
+
+CREATE TABLE users (
+  id VARCHAR (100) NOT NULL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  emailAddress VARCHAR(10) NOT NULL UNIQUE,
+  password VARCHAR(8) NOT NULL
+);
+
+
+
+CREATE TABLE orders (
+	 id VARCHAR (100)NOT NULL PRIMARY KEY,
+	 dateOfOrder DATETIMEOFFSET DEFAULT SYSDATETIMEOFFSET(),
+	 orderStatus VARCHAR (50) NOT NULL,
+	 userID VARCHAR (100) NOT NULL,
+	 FOREIGN KEY (userID) REFERENCES users(id),
+);
+
+
+
+CREATE TABLE products ( 
+  id VARCHAR (100) NOT NULL PRIMARY KEY,
+  name VARCHAR (100) NOT NULL,
+  price DECIMAL (10,2) NOT NULL,
+  image VARCHAR (100) NOT NULL,
+  category VARCHAR (100) NOT NULL
+);
+
+
+
+CREATE TABLE cart (
+  id VARCHAR (100) NOT NULL,
+  productID VARCHAR (100) NOT NULL,
+  quantity INT  NOT NULL DEFAULT 1,
+  userID VARCHAR (100) NOT NULL, 
+  FOREIGN KEY (userID) REFERENCES users (id),
+  FOREIGN KEY (productID) REFERENCES products (id)
+);
+
+
+
+CREATE TABLE sales (
+	 id VARCHAR (100)NOT NULL PRIMARY KEY,
+	 orderID VARCHAR (100)NOT NULL,
+	 productID VARCHAR (100) NOT NULL,
+	 quantity INT NOT NULL DEFAULT 1,
+	 price DECIMAL (10,2) NOT NULL,
+	 FOREIGN KEY (orderID) REFERENCES orders (id),
+	 FOREIGN KEY (productID) REFERENCES products (id)
+	 
+);
+
