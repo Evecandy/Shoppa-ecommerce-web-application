@@ -4,7 +4,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
+
 function Signup() {
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     Username: yup.string().required("Username is required"),
     Password: yup.string().required("Password is required"),
@@ -17,7 +19,8 @@ function Signup() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = (data) =>{
-    
+    navigate("/signin");
+
   }
   return (
     <>

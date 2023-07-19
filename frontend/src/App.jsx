@@ -4,6 +4,7 @@ import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
+import Signout from "./Components/Header"
 import Products from "./Pages/Products";
 import Product from "./Pages/Product";
 import MyOrders from "./Pages/MyOrders";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Products />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/signout" element={<Signout />}/>
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/myorders" element={<MyOrders />} />

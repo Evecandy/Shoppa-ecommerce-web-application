@@ -33,7 +33,7 @@ function OrderDetails() {
       
       <div className="order-payment-amount">
         <div>Payment Amount:</div>
-        <div>Ksh 135,000</div> 
+        <div>Ksh 13,500</div> 
       </div>
     </>
   );
