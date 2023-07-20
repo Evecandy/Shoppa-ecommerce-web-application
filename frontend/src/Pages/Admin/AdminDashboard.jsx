@@ -4,8 +4,8 @@ function AdminDashboard() {
   
 
   return (
-    <div className='dashboard'>
-     <Sidebar/>
+    <div id='dashboard'>
+        Dashboard
      
     </div>
   )

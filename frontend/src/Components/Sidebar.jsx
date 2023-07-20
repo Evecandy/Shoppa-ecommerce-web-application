@@ -4,8 +4,9 @@ import { Link, NavLink } from "react-router-dom";
 const Sidebar = ({ children }) => {
   const menuItem = [
     {
-      path: "/admin/dashboard",
+      path: "/admin",
       name: "Dashboard",
+      exactMatch: true
     },
     {
       path: "/admin/customers",
@@ -18,14 +19,14 @@ const Sidebar = ({ children }) => {
     {
       path: "/admin/products",
       name: "Products",
-    },
+    }, 
   ];
 
   return (
     <div className="sidebar-container">
       <div className="sidebar">
         {menuItem.map((item, index) => (
-          <NavLink to={item.path} key={index} 
+          <NavLink {...(item?.exactMatch ? {end:true}:null)} to={item.path} key={index} 
           className={({ isActive }) =>
            isActive ? "active link" : "link"
         }

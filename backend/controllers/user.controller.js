@@ -1,5 +1,5 @@
 import sql from "mssql";
-import { databaseConfig } from "../config/index.js";
+import { databaseConfig, expressConfig } from "../config/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { v4 as uid } from "uuid";
@@ -54,10 +54,11 @@ export const signin = async (req, res) => {
     if (!bcrypt.compareSync(password, user.password)) {
       res.status(401).json({ error: "signin not successful" });
     } else {
-      const token = jwt.sign({ username: user.username }, config.jwt_secret);
+      const token = jwt.sign({ id: user.id,
+      role: user.role }, expressConfig.jwt_secret);
       res.status(200).json({
         username: user.username,
-        token: token,
+        token, role:user.role
       });
     }
   }
@@ -70,24 +71,23 @@ export const getUsers = async (req, res) => {
     const resultSet = await pool.request().query("SELECT * FROM users");
     res.status(200).json(resultSet.recordset);
   } catch (error) {
-    res.status(220).json(error.message);
+    res.status(500).json(error.message);
   } finally {
     sql.close();
   }
 };
 
-//get a user:userID:
+//get a user:id:
 export const getOneUser = async (req, res) => {
   try {
-    const { userID } = req.params;
+    const { id } = req.params;
     let pool = await sql.connect(databaseConfig);
     const resultSet = await pool
       .request()
 
-      .input("userID", sql.VarChar, userID)
-      .query("SELECT * FROM users WHERE userID = @userID");
-    console.log(resultSet.recordset);
-    res.status(200).json(resultSet);
+      .input("id", sql.VarChar, id)
+      .query("SELECT * FROM users WHERE id = @id");
+    res.status(200).json(resultSet.recordset);
   } catch (error) {
     res.status(500).json(error.message);
   } finally {
@@ -120,19 +120,21 @@ export const createusers = async (req, res) => {
 //update a user
 export const updateUser = async (req, res) => {
   try {
+    const{id} = req.params;
     const { username } = req.params;
     const { emailAddress } = req.body;
     const { password } = req.body;
     let pool = await sql.connect(databaseConfig);
     const resultset = await pool
       .request()
+      .input("id", sql.VarChar, id )
       .input("username", sql.VarChar, username)
       .input("emailAddress", sql.VarChar, emailAddress)
       .input("password", sql.VarChar, password)
-      .query("UPDATE users SET password=@password WHERE username=@username");
+      .query("UPDATE users SET password=@password WHERE id=@id");
     res.status(200).json({ message: "User password was updated successfully" });
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(500).json({message:error.message});
   } finally {
     sql.close();
   }

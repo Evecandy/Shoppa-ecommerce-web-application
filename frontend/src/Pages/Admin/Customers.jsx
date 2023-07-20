@@ -7,15 +7,15 @@ function Customers() {
   
 
   return (
-    <div className="customers-container">
+    <div id="customers-container">
 
-    <Sidebar/>
-      <div className="customers">
+    
+      <ul className="customers">
           <li className="customer-details">
             <div>Username <br />Shally08</div>
             <div>Email <br />Shally08@gmail.com</div>
           </li>
-</div>
+      </ul>
     </div>
   )
 }
