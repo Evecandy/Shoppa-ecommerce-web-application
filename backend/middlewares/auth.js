@@ -20,7 +20,6 @@ export const verifyUser = (req,res,next)=> {
 
 export const adminOnly = (req,res,next)=> {
     try {
-        console.log(req.body);
         const token = req.headers['token']
         if (!token) {
             return res.status(401).json({message:'Unauthorized'})

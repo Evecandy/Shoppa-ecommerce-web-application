@@ -17,7 +17,7 @@ function ProductCard(props) {
     }
 
     function goToProductPage() {
-        navigate("/product/tgfvybhnj")
+        navigate("/product/" + props.data.id)
     }
 
     function addToCart(event){
@@ -27,7 +27,7 @@ function ProductCard(props) {
     useEffect(() => {
         // setImage(props.data.image)
         const img = new Image()
-        img.crossOrigin = 'anonymous'
+        img.crossOrigin = 'Anonymous'
         img.addEventListener( 'load', getColorPalette)
         img.src = props.data.image
         setImage(img)
@@ -44,7 +44,7 @@ function ProductCard(props) {
 
                 <h3 className="product-name">{props.data.name}</h3>
                 <div className="pricing-and-action">
-                    <div className="price">Ksh 4,500</div>
+                    <div className="price">Ksh {props.data.price}</div>
                     {/* <Link to = "/cart"> */}
                     <button className="add-to-cart green-btn btn" onClick={addToCart}>Add to Cart</button>
                     {/* </Link> */}

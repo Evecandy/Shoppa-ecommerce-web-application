@@ -1,16 +1,61 @@
 import "./Product.css";
-import ankara from "../assets/ankara.jpg";
+import { useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Product() {
+  let [product, setProduct] = useState(null)
+  let [error, setError] = useState(null)
+
+  const authUser = useSelector((state) => state.users.authUser)
+
+  const {id} = useParams()
+
+  async function fetchProduct(id){
+    const response = await fetch(`http://localhost:8080/products/${id}`)
+    const data = await response.json()
+
+    if (response.ok) {
+      setProduct(data)
+      setError(null)
+    } else {
+      setProduct(null)
+      setError(data.message || 'An unexpected error occured')
+    }
+  }
+
+  async function addToCart() {
+    const response = await fetch('http://localhost:8080/cart', {
+      method:'POST',
+      headers: {
+        'Content-Type':'application/json',
+        token: authUser?.token || ''
+      },
+      body: JSON.stringify({
+        productID: product.id
+      })
+    })
+
+    const data = await response.json()
+    console.log(data);
+  }
+
+  useEffect(()=>{
+    fetchProduct(id)
+  },[])
+
   return (
     <>
+    { product ? (
+      <>
       <div id="product-details">
-        <div id="product-image" style={{backgroundImage: `url(${ankara})`}}>
+        <div id="product-image" style={{backgroundImage: `url(${product.image})`}}>
 
         </div>
         <div id="product-info">
-          <h3 id="product-name">Ankara top and pants</h3>
-          <p id="product-price">Ksh 4,500</p>
+          <h3 id="product-name">{product.name}</h3>
+          <p id="product-price">Ksh {product.price}</p>
 
           {/* Star rating */}
 
@@ -22,8 +67,15 @@ function Product() {
         </div>
       </div>
       <div id="add-to-cart">
-        <button className="btn green-btn">Add to Cart</button>
+        <button className="btn green-btn" onClick={addToCart}>Add to Cart</button>
       </div>
+      </>
+    )
+    :
+    (
+      <div>{error}</div>
+    )
+    }
     </>
   );
 }

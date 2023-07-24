@@ -45,7 +45,6 @@ export const signin = async (req, res) => {
   const result = await pool
     .request()
     .input("username", sql.VarChar, username)
-    .input("password", sql.VarChar, password)
     .query("SELECT * FROM users WHERE username = @username");
   const user = result.recordset[0];
   if (!user) {
@@ -71,7 +70,7 @@ export const getUsers = async (req, res) => {
     const resultSet = await pool.request().query("SELECT * FROM users");
     res.status(200).json(resultSet.recordset);
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(500).json({message:error.message});
   } finally {
     sql.close();
   }
@@ -89,7 +88,7 @@ export const getOneUser = async (req, res) => {
       .query("SELECT * FROM users WHERE id = @id");
     res.status(200).json(resultSet.recordset);
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(500).json({message:error.message});
   } finally {
     sql.close();
   }
@@ -111,7 +110,7 @@ export const createusers = async (req, res) => {
       );
     res.status(200).json({ message: "User created successfully" });
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(500).json({message:error.message});
   } finally {
     sql.close();
   }

@@ -71,7 +71,7 @@ label {
   font-size: small;
 }
 
-input {
+input, select {
   outline: none;
   border: 1px solid var(--theme-grey) ;
   font-size: 1rem;
@@ -86,7 +86,7 @@ input {
   flex-direction: column;
 }
 
-input:focus {
+input:focus, select:focus {
   border-bottom: 1px solid var(--theme-green);
 }
 

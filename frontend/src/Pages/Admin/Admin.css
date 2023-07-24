@@ -1,12 +1,16 @@
 
 
-#admin-container{
+#admin-container {
     width: 100%;
     min-height: 100vh;
     flex:1;
     display: flex;
-
 }
+
+#admin-container>main {
+    margin: 1rem auto;
+}
+
 .customers,.orders{
     flex: 1;
     padding: 2rem;

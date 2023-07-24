@@ -1,6 +1,24 @@
 
 #new-product-form {
     display: flex;
-
+    padding: 1rem;
     border: 1px solid #808080;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#new-product-form>input[type=submit] {
+    align-self: flex-end;
+}
+
+h3 {
+    text-align: center;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
 }

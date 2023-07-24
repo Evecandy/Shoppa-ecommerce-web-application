@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
@@ -11,14 +11,25 @@ import MyOrders from "./Pages/MyOrders";
 import Cart from "./Pages/Cart";
 import Payment from "./Pages/Payment";
 import OrderDetails from "./Pages/OrderDetails";
-import AdminDashboard from "./Pages/Admin/AdminDashboard";
-import Customers from "./Pages/Admin/Customers";
-import Orders from "./Pages/Admin/Orders";
-import ProductsAdmin from "./Pages/Admin/ProductsAdmin";
 import NotFound from "./Pages/NotFound";
 import Admin from "./Pages/Admin/Admin";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { initAuth } from "./Redux/userSlice";
+
 
 function App() {
+  const dispatch = useDispatch();
+  const authUser = useSelector(state=>state.users.authUser);
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    const role = localStorage.getItem('role');
+    const authUser = token && username && role ? {token, username, role} : null
+    dispatch(initAuth(authUser))
+  },[])
+
   return (
     <>
       <BrowserRouter>
@@ -27,20 +38,15 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Products />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signout" element={<Signout />}/>
+            <Route path="/signup" element={!authUser ? <Signup /> : authUser.role==='admin' ? <Navigate to="/admin"/> : <Navigate to="/"/>} />
+            <Route path="/signin" element= {!authUser ? <Signin /> : authUser.role==='admin' ? <Navigate to="/admin"/> : <Navigate to="/"/> }/>
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<Product />} />
-            <Route path="/myorders" element={<MyOrders />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/myorders" element={authUser ? <MyOrders /> : <Navigate to="/signin"/>} />
+            <Route path="/cart" element={authUser ? <Cart /> : <Navigate to="/signin"/>} />
             <Route path="/payment" element={<Payment />} />
-            <Route path="/order/:id" element={<OrderDetails />} />
-            {/* <Route path="/admin/dashboard" element={<AdminDashboard />}/> */}
-            <Route path="/admin/*" element={<Admin />}/>
-            {/* <Route path="/admin/customers" element={<Customers />} /> */}
-            {/* <Route path="/admin/orders" element={<Orders />} /> */}
-            {/* <Route path="/admin/products" element={<ProductsAdmin />} /> */}
+            <Route path="/order/:id" element={authUser ? <OrderDetails /> : <Navigate to="/signin"/>} />
+            <Route path="/admin/*" element={!authUser ? <Signin/> : authUser?.role === 'admin' ? <Admin /> : <Navigate to="/"/>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
