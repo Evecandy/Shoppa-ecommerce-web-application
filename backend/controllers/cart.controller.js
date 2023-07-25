@@ -3,6 +3,7 @@ import { databaseConfig } from "../config/index.js";
 import { v4 as uid } from "uuid";
 
 export const addToCart = async (req, res) => {
+
   try {
     const { productID } = req.body;
     let pool = await sql.connect(databaseConfig);
@@ -12,7 +13,7 @@ export const addToCart = async (req, res) => {
     .query("SELECT * FROM cart WHERE userID=@userID")).recordset;
 
     const item = cart.length ? cart.find(item => item.productID === productID) : null
-
+    // const item = cart.length ? cart.
     if (item) {
       await pool.request()
       .input("id", sql.VarChar, item.id)
@@ -41,8 +42,16 @@ export const addToCart = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
+
     let pool = await sql.connect(databaseConfig);
-    const resultSet = await pool.request().query("SELECT * FROM cart");
+    const resultSet = await pool.request()
+    .input("userID", sql.VarChar, req.auth.id)
+    .query(`SELECT c.id, c.quantity, c.userID, c.productID, p.name, p.price, p.image, p.category
+    FROM cart c
+    LEFT JOIN
+    products p
+    ON c.productID = p.id
+    WHERE c.userID = @userID`);
     res.status(200).json(resultSet.recordset);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -60,8 +69,11 @@ export const removeFromCart = async (req, res) => {
     const { id } = req.params;
     let pool = await sql.connect(databaseConfig);
 
-    await sql.query`DELETE FROM products WHERE id = ${id}`;
-    res.status(200).json({ message: "product deleted successfully" });
+    await pool.request()
+    .input("id", sql.VarChar,id)
+    .input("userID", sql.VarChar, req.auth.id)
+    .query(`DELETE FROM cart WHERE id = @id AND userID = @userID`);
+    res.status(200).json({ message: "item removed successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   } finally {

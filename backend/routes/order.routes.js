@@ -1,13 +1,11 @@
 import { Router } from "express";
-import { adminOnly } from "../middlewares/auth";
-import { verifyUser } from "../middlewares/auth";
-import { addToOrder, getOrders } from "../controllers/orders.controller";
-import { adminOnly } from "../middlewares/auth";
+import { verifyUser, adminOnly } from "../middlewares/auth.js";
+import { createOrder, getOneOrder, getOrders } from "../controllers/orders.controller.js";
 
 const orderRouter = Router()
 
-orderRouter.post("", verifyUser, addToOrder)
+orderRouter.post("", verifyUser, createOrder)
 orderRouter.get("", verifyUser,getOrders)
-orderRouter.get("/:id", '', adminOnly)
+orderRouter.get("/:id", verifyUser, getOneOrder)
 
 export default orderRouter;

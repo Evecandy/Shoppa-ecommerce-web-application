@@ -41,13 +41,13 @@ function Signup() {
               <label htmlFor="">Username</label>
               <input type="text" {...register("username")} placeholder="Username"/>
           </div>
-          <p>{errors.Username?.message}</p>
+          <p>{errors.username?.message}</p>
         <div className="input-wrapper">
           <label htmlFor=""> Email </label>
           <input
               type="email" {...register("emailAddress")} placeholder="email@example.com"/>
         </div>
-          <p>{errors.EmailAddress?.message}</p>
+          <p>{errors.emailAddress?.message}</p>
           <div className="input-wrapper">
             <label htmlFor=""> Password </label>
             <input type="password" {...register("password")} placeholder="Password" />

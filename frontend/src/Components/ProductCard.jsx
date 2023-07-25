@@ -2,12 +2,14 @@
 import "./ProductCard.css";
 import { extractColors } from 'extract-colors'
 import { useState, useEffect } from "react"
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard(props) {    
     let [image, setImage] = useState(null);
     const [colors, setColors] = useState([]);
     const navigate = useNavigate();
+    const authUser = useSelector(state=>state.users.authUser)
 
     async function getColorPalette() {
         // console.log(image);
@@ -20,9 +22,24 @@ function ProductCard(props) {
         navigate("/product/" + props.data.id)
     }
 
-    function addToCart(event){
+
+    async function addToCart(event){
         event.stopPropagation();
+        const response = await fetch('http://localhost:8080/cart', {
+            method:'POST',
+            headers: {
+              'Content-Type':'application/json',
+              token: authUser?.token || ''
+            },
+            body: JSON.stringify({
+              productID:props.data.id
+            })
+          })
+      
+          const data = await response.json()
+          console.log(data);
     }
+
   
     useEffect(() => {
         // setImage(props.data.image)
