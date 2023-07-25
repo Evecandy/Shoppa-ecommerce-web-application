@@ -1,12 +1,14 @@
 import "./Product.css";
 import { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartFailure, fetchCartSuccess, fetchingCart } from "../Redux/cartSlice";
 
 
 function Product() {
   let [product, setProduct] = useState(null)
   let [error, setError] = useState(null)
+  const dispatch = useDispatch();
 
   const authUser = useSelector((state) => state.users.authUser)
 
@@ -39,6 +41,15 @@ function Product() {
 
     const data = await response.json()
     console.log(data);
+    dispatch(fetchingCart())
+    fetch('http://localhost:8080/cart', {
+      headers:{token:authUser?.token}
+    }).then(response=>{
+      response.json().then(data=>{
+        response.ok ? dispatch(fetchCartSuccess(data)) : dispatch(fetchCartFailure(data))
+      })
+    })
+
   }
 
   useEffect(()=>{

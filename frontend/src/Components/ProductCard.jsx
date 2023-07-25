@@ -2,14 +2,17 @@
 import "./ProductCard.css";
 import { extractColors } from 'extract-colors'
 import { useState, useEffect } from "react"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchCartFailure, fetchCartSuccess, fetchingCart } from "../Redux/cartSlice";
+
 
 function ProductCard(props) {    
     let [image, setImage] = useState(null);
     const [colors, setColors] = useState([]);
     const navigate = useNavigate();
     const authUser = useSelector(state=>state.users.authUser)
+    const dispatch = useDispatch()
 
     async function getColorPalette() {
         // console.log(image);
@@ -38,6 +41,15 @@ function ProductCard(props) {
       
           const data = await response.json()
           console.log(data);
+          dispatch(fetchingCart())
+          fetch('http://localhost:8080/cart', {
+            headers:{token:authUser?.token}
+          }).then(response=>{
+            response.json().then(data=>{
+              response.ok ? dispatch(fetchCartSuccess(data)) : dispatch(fetchCartFailure(data))
+            })
+          })
+    
     }
 
   

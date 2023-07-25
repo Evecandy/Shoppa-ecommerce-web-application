@@ -25,7 +25,7 @@ export const createOrder = async (req, res) => {
     await pool
       .request()
       .input("id", sql.VarChar, id)
-      .input("userID", sql.Decimal, req.auth.id)
+      .input("userID", sql.VarChar, req.auth.id)
       .query("INSERT INTO orders ( id,userID) VALUES ( @id, @userID )");
     for ( let i=0; i < cart.length; i++){
         const item = cart[i]
@@ -37,8 +37,14 @@ export const createOrder = async (req, res) => {
             .input("productID", sql.VarChar, item.productID)
             .input("quantity", sql.Int, item.quantity)
             .input("price", sql.Decimal, item.price)
-            .query( "INSERT INTO sales (id, orderID, productID, quantity, price) VALUES (@id, @orderID, @productID, @quantity, @price")
+            .query( "INSERT INTO sales (id, orderID, productID, quantity, price) VALUES (@id, @orderID, @productID, @quantity, @price)")
     }
+    await pool
+      .request()
+      .input("userID", sql.VarChar, req.auth.id)
+      .query("DELETE FROM cart WHERE userID = @userID")
+
+
     return res.status(201).json({ message: "Order added successfully", id });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -69,14 +75,38 @@ export const getOneOrder = async (req, res) => {
     const resultSet = await pool
       .request()
       .input("id", sql.VarChar, id)
-      .query("SELECT * FROM orders WHERE id = @id");
+      .query(`
+          SELECT
+          o.id, o.dateOfOrder, o.orderStatus, o.userID, 
+          s.id AS saleID, s.quantity, s.price, s.productID,
+          p.name, p.image, p.category
+          FROM orders o
+          LEFT JOIN sales s
+          ON o.id=s.orderID
+          LEFT JOIN products p
+          ON s.productID=p.id
+          WHERE o.id=@id;
+      `);
 
-    const order = resultSet.recordset[0];
-    order
-      ? res.status(200).json(resultSet.recordset[0])
-      : res
-          .status(404)
-          .json({ message: `Order with ID ${id} is not available` });
+    const orderItems = resultSet.recordset;
+    if (!orderItems.length ) {
+      return  res.status(404).json({ message: `Order with ID ${id} is not available` });
+    }
+    let order = {
+      id:orderItems[0].id,
+      dateOfOrder:orderItems[0].dateOfOrder,
+      orderStatus:orderItems[0].orderStatus,
+      userID:orderItems[0].userID,
+      total:orderItems.reduce((accumulator, currentValue)=>accumulator+(currentValue.price*currentValue.quantity),0),
+      itemsCount:orderItems.length, 
+      items:orderItems.map(item=>{
+        const {id, dateOfOrder, orderStatus, userID, ...rest} = item
+        return rest
+      })
+    }
+
+    return res.status(200).json(order)
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   } finally {

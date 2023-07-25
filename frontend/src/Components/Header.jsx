@@ -10,6 +10,7 @@ function Header() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const authUser = useSelector((state) => state.users.authUser);
   const dispatch = useDispatch();
+  const cartItemsCount = useSelector(state=>state.cart.items.length)
 
   function signout (){
     localStorage.removeItem("username");
@@ -38,7 +39,11 @@ function Header() {
         <div className="header-right">
           
           {authUser ? (
-            <button onClick={signout}>Sign out</button>
+            <>
+              <button onClick={signout}>Sign out</button>
+              <Link to="/myorders" id="my-orders-btn">My Orders</Link>
+            </>
+            
           ) : (
             <div className="auth-btns">
               <Link to="/signup">
@@ -55,6 +60,7 @@ function Header() {
             <Link to="/cart">
               {" "}
               <BsCart3 color="white" />
+              <span style={{color:"white"}}>{cartItemsCount}</span>
             </Link>
           </div>
         </div>

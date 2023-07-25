@@ -16,6 +16,7 @@ import Admin from "./Pages/Admin/Admin";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initAuth } from "./Redux/userSlice";
+import { fetchCartFailure, fetchCartSuccess, fetchingCart } from "./Redux/cartSlice";
 
 
 function App() {
@@ -26,9 +27,21 @@ function App() {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const role = localStorage.getItem('role');
-    const authUser = token && username && role ? {token, username, role} : null
-    dispatch(initAuth(authUser))
+    const authUserInfo = token && username && role ? {token, username, role} : null
+    dispatch(initAuth(authUserInfo))
+    if (authUserInfo) {
+      dispatch(fetchingCart())
+      fetch('http://localhost:8080/cart', {
+        headers:{token:authUserInfo.token}
+      }).then(response=>{
+        response.json().then(data=>{
+          response.ok ? dispatch(fetchCartSuccess(data)) : dispatch(fetchCartFailure(data))
+        })
+      })
+    }
+
   },[])
+
 
   return (
     <>

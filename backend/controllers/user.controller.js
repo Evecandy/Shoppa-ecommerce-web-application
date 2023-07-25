@@ -55,6 +55,7 @@ export const signin = async (req, res) => {
     } else {
       const token = jwt.sign({ id: user.id,
       role: user.role }, expressConfig.jwt_secret);
+      
       res.status(200).json({
         username: user.username,
         token, role:user.role

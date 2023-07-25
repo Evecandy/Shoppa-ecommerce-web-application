@@ -41,6 +41,11 @@ nav>a {
     font-size: 1.3rem;   
 }
 
+#my-orders-btn{
+    color: white;
+    text-decoration: none;
+}
+
 .cart-icon {
     size: 1rem;
 }

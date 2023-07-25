@@ -14,12 +14,15 @@
 .orders-info {
     font-size: larger;
     font-weight: 600; 
-    justify-content: space-around;   
+    justify-content: space-around;
+    display: flex;   
 }
 
 .orders {
     list-style-type: none;
-    
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
 }
 
 .order {

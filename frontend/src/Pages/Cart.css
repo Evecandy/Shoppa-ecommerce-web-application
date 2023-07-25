@@ -8,6 +8,12 @@
     flex-wrap: wrap;
 }
 
+#total{
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
 #cart-heading {
     font-weight: 700;
     font-size: larger;

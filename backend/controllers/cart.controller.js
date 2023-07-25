@@ -61,7 +61,20 @@ export const getCart = async (req, res) => {
 };
 
 export const updateCartItem = async (req,res) =>{
+  try {
+    const {id} = req.params;
+    const {quantity} =req.body;
+    const pool = await sql.connect(databaseConfig);
 
+    await pool.request()
+      .input("id",sql.VarChar, id)
+      .input("userID", sql.VarChar, req.auth.id)
+      .input("quantity", sql.Int, +quantity>0 ? +quantity : 1 )
+      .query("UPDATE cart SET quantity=@quantity WHERE id =@id and userID =@userID ")
+      res.status(200).json({message:"Quantity updated successfully"});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  } finally{ sql.close()}
 }
 
 export const removeFromCart = async (req, res) => {
@@ -73,7 +86,7 @@ export const removeFromCart = async (req, res) => {
     .input("id", sql.VarChar,id)
     .input("userID", sql.VarChar, req.auth.id)
     .query(`DELETE FROM cart WHERE id = @id AND userID = @userID`);
-    res.status(200).json({ message: "item removed successfully" });
+    res.status(200).json({ message: "Item removed successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   } finally {
