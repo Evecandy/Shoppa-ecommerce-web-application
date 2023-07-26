@@ -23,7 +23,7 @@ export const createCheckoutSession = async (req, res) => {
                 id: item.productID
               }
             },
-            unit_amount: item.price * 100
+            unit_amount: item.price 
           },
           quantity: item.quantity
         }
