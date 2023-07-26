@@ -8,6 +8,11 @@
     flex-wrap: wrap;
 }
 
+.cart-summary{
+    font-size: medium;
+    font-weight: 500;
+}
+
 #total{
     display: flex;
     gap: 0.5rem;

@@ -17,6 +17,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initAuth } from "./Redux/userSlice";
 import { fetchCartFailure, fetchCartSuccess, fetchingCart } from "./Redux/cartSlice";
+import Women from "./Pages/Women";
+import Men from "./Pages/Men";
+import Kids from "./Pages/Kids";
 
 
 function App() {
@@ -55,6 +58,9 @@ function App() {
             <Route path="/signin" element= {!authUser ? <Signin /> : authUser.role==='admin' ? <Navigate to="/admin"/> : <Navigate to="/"/> }/>
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/women" element={<Women/>}/>
+            <Route path="/men" element={<Men/>}/>
+            <Route path="kids" element={<Kids/>}/>
             <Route path="/myorders" element={authUser ? <MyOrders /> : <Navigate to="/signin"/>} />
             <Route path="/cart" element={authUser ? <Cart /> : <Navigate to="/signin"/>} />
             <Route path="/payment" element={<Payment />} />

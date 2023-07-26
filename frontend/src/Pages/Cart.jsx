@@ -111,7 +111,7 @@ function Cart() {
     <>
       <div id="cart-container">
         <div id="total">
-          <div>Cart Summary</div>
+          <div className="cart-summary">Cart Summary</div>
           <hr />
           <div>TOTAL Ksh {subtotal}</div>
           <Payment  cartItems={cart} />

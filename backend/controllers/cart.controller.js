@@ -56,7 +56,7 @@ export const getCart = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -74,7 +74,9 @@ export const updateCartItem = async (req,res) =>{
       res.status(200).json({message:"Quantity updated successfully"});
   } catch (error) {
     res.status(500).json({ message: error.message });
-  } finally{ sql.close()}
+  } finally{ 
+    // sql.close()
+  }
 }
 
 export const removeFromCart = async (req, res) => {
@@ -90,7 +92,7 @@ export const removeFromCart = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 

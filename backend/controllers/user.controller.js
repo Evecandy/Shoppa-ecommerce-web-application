@@ -35,7 +35,7 @@ export const signup = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -68,12 +68,12 @@ export const signin = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     let pool = await sql.connect(databaseConfig);
-    const resultSet = await pool.request().query("SELECT * FROM users");
+    const resultSet = await pool.request().query("SELECT id, username, emailAddress, dateJoined, role FROM users");
     res.status(200).json(resultSet.recordset);
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -91,7 +91,7 @@ export const getOneUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -113,7 +113,7 @@ export const createusers = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -136,7 +136,7 @@ export const updateUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 

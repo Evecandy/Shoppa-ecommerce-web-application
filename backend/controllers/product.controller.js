@@ -51,7 +51,7 @@ export const getProducts = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -70,7 +70,7 @@ export const getOneProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -84,7 +84,7 @@ export const deleteProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
   }
 };
 
@@ -108,6 +108,22 @@ export const updateProduct = async (req, res) => {
   } catch (error) {
     res.status(500).json({message:error.message});
   } finally {
-    sql.close();
+    // sql.close();
+  }
+};
+
+// getting products by category
+export const getProductsByCategory= async (req, res) => {
+  try {
+    const { category } = req.params;
+    let pool = await sql.connect(databaseConfig);
+    const resultSet = await pool.request()
+    .input("category", sql.VarChar, category)
+    .query("SELECT * FROM products WHERE category = @category");
+    res.status(200).json(resultSet.recordset);
+  } catch (error) {
+    res.status(500).json({message:error.message});
+  } finally {
+    // sql.close();
   }
 };

@@ -52,17 +52,13 @@ function MyOrders() {
 
               <li  className="order">
                 <div>{order.id}</div>
-                <div>{order.dateOfOrder}</div>
+                <div>{new Date(order.dateOfOrder).toUTCString()}</div>
                 {/* <div>{order.totalAmount}</div>
                 <div>{order.itemsCount}</div> */}
                 <div>{order.orderStatus}</div>
               </li>
             </Link>
           ))}
-        </ul>
-
-      <ul>
-
         </ul>
 
     </>

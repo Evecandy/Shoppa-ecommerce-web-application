@@ -31,12 +31,13 @@
 
 .order-item {
     display: flex;
-    width: max(300px, 50svw);
+    /* width: max(300px, 50svw); */
     box-shadow: var(--default-box-shadow);
     background-color: white;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0.5rem;
-    
+    /* border-radius: 0.5rem;
+    gap: 0.5rem; */
 }
 
 

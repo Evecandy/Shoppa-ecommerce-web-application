@@ -26,15 +26,15 @@ function Header() {
           Shoppa
         </Link>
         <nav>
-          <a className="women" href="">
-            Women
-          </a>
-          <a className="men" href="">
-            Men
-          </a>
-          <a className="kids" href="">
-            Kids
-          </a>
+        <Link to="/women" className="women">
+          Women
+        </Link>
+        <Link to="/men" className="men">
+          Men
+        </Link>
+        <Link to="/kids" className="kids">
+          Kids
+        </Link>
         </nav>
         <div className="header-right">
           
