@@ -1,5 +1,5 @@
 
-.orders-heading {
+/* .orders-heading {
     font-size: larger;
     font-weight: 800;
 }
@@ -42,4 +42,61 @@
 
 .order:hover {
     box-shadow: var(--default-hover-box-shadow);
-}
+} */
+
+.orders-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .orders-status {
+    margin-bottom: 20px;
+  }
+  
+  .orders-status ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  .orders-status li {
+    margin-right: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .orders {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ccc;
+  }
+  
+  .orders-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Adjust column width as needed */
+    font-weight: bold;
+    background-color: #f9f9f9;
+    padding: 8px;
+  }
+  
+  .order {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Adjust column width as needed */
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .order div {
+    padding: 4px;
+  }
+  
+  /* Optional: Hover effect for better user experience */
+  .order-link {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .order-link:hover {
+    background-color: #f0f0f0;
+  }
+  

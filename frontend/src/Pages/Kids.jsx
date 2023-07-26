@@ -29,7 +29,6 @@ function Kids() {
   return (
     <>
       <div className="products">
-        <h2>kids products to be uploaded soon</h2>
       {kids}
       </div>
     </>

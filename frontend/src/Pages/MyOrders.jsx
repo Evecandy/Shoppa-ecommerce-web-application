@@ -43,8 +43,7 @@ function MyOrders() {
           <div className="orders-info">
                 <div>Order ID</div>
                 <div>Order date</div>
-                <div>Amount</div>
-                <div>Items</div>
+
                 <div>Status</div>
           </div>
           {myOrders.map((order) => (
@@ -53,8 +52,7 @@ function MyOrders() {
               <li  className="order">
                 <div>{order.id}</div>
                 <div>{new Date(order.dateOfOrder).toUTCString()}</div>
-                {/* <div>{order.totalAmount}</div>
-                <div>{order.itemsCount}</div> */}
+
                 <div>{order.orderStatus}</div>
               </li>
             </Link>

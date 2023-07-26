@@ -1,0 +1,7 @@
+.chartbar{
+    height: 300px;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid black;
+}

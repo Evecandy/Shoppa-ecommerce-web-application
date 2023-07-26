@@ -29,32 +29,25 @@ function Customers() {
   return (
     <div id="customers-container">
 
-    
-      <ul className="customers">
-          <li className="customer-details">
-            <div>Username <br />Shally08</div>
-            <div>Email <br />Shally08@gmail.com</div>
-          </li>
-      </ul>
       <ul className="customers">
           <div className="customer-info">
+                <div>User ID</div>
                 <div>Username</div>
-                <div>Order Date</div>
                 <div>Email</div>
                 <div>Date Joined</div>
                 <div>Role</div>
           </div>
-          {myOrders.map((order) => (
-            <Link to={"/order/" + order.id} key={order.id} className="order-link">
-
-              <li  className="order">
-                <div>{order.id}</div>
-                <div>{new Date(order.dateOfOrder).toUTCString()}</div>
-                {/* <div>{order.totalAmount}</div>
-                <div>{order.itemsCount}</div> */}
-                <div>{order.orderStatus}</div>
+          {customers.map((customer) => (
+           
+            <div key={customer.id}>
+              <li  className="customer">
+                <div>{customer.id}</div>
+                <div>{customer.username}</div>
+                <div>{customer.emailAddress}</div>
+                <div>{new Date(customer.dateJoined).toUTCString()}</div>
+                <div>{customer.role}</div>
               </li>
-            </Link>
+              </div>
           ))}
         </ul>
     </div>

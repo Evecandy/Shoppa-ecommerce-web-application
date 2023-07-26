@@ -1,34 +1,34 @@
 
-#customers-container {
+#orders-container {
     margin: 20px;
   }
   
-  .customers {
+  .orders {
     list-style: none;
     padding: 0;
   }
   
-  .customer-info {
+  .order-info {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; /* Adjust column width as needed */
+    grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust column width as needed */
     font-weight: bold;
     border-bottom: 1px solid #ccc;
     padding: 8px;
   }
   
-  .customer {
+  .order {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; /* Adjust column width as needed */
+    grid-template-columns: 1fr 2fr 1fr 1fr; /* Adjust column width as needed */
     padding: 8px;
     border-bottom: 1px solid #ccc;
   }
   
-  .customer div {
+  .order div {
     padding: 4px;
   }
   
   /* Optional: Alternate row background color for better readability */
-  .customer:nth-child(even) {
+  .order:nth-child(even) {
     background-color: #f9f9f9;
   }
   
